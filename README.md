@@ -11,6 +11,13 @@ query {
     deaths
     recovered
   }
+  results (country: ["US", "Canada"], date: { "lt": "3/10/2020" }) {
+    country
+    date
+    confirmed
+    deaths
+    recovered
+  }
 }
 
 ```
