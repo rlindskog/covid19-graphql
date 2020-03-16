@@ -1,0 +1,10 @@
+{
+  "name": "covid19-graphql",
+  "public": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "api/index.ts"
+    }
+  ]
+}

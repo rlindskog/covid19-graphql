@@ -1,0 +1,7 @@
+node_modules
+.now
+.dist
+.DS_Store
+.nuxt
+.next
+yarn-error.log

@@ -1,0 +1,1 @@
+https://covid19-graphql.now.sh
