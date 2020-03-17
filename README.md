@@ -20,6 +20,7 @@ query {
     confirmed
     deaths
     recovered
+    growthRate
   }
 
   # by country
