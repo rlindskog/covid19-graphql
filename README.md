@@ -8,19 +8,24 @@ Example query
 ```graphql
 
 query {
-  result (country: "US", date: "3/15/2020") {
-    country
+  # time series data
+  results (countries: ["US", "Canada"], date: { lt: "3/10/2020" }) {
+    country {
+      name
+    }
     date
     confirmed
     deaths
     recovered
   }
-  results (countries: ["US", "Canada"], date: { lt: "3/10/2020" }) {
-    country
-    date
-    confirmed
-    deaths
-    recovered
+
+  # by country
+  country(name: "US") {
+    name
+    mostRecent {
+      date
+      confirmed
+    }
   }
 }
 
