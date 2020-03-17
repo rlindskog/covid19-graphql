@@ -19,9 +19,10 @@ const resolvers: QueryResolvers = {
   async results(_parent, { countries, date }, { getResults }) {
     const results = await getResults()
     const eq = date && date.eq ? formatDate(new Date(date.eq)) : null
-    const lt = date && date.lt ? formatDate(new Date(date.lt)) : null
-    const gt = date && date.gt ? formatDate(new Date(date.gt)) : null
+    const lt = date && date.lt ? new Date(formatDate(new Date(date.lt))) : null
+    const gt = date && date.gt ? new Date(formatDate(new Date(date.gt))) : null
     console.log("LESS THAN", lt)
+    console.log("EQUAL TO", eq)
     const countryNames = countries && countries.length > 0 ? countries : Object.keys(results)
     let formatted = countryNames
       .reduce((acc, countryName) => {
@@ -33,8 +34,8 @@ const resolvers: QueryResolvers = {
         return [...acc, ...withCountryName]
       }, [])
       .filter(result => {
-        const d = formatDate(new Date(result.date))
-        return ((eq && d === eq) || (lt && d < lt) || (gt && d > gt)) || !date
+        const d = new Date(result.date)
+        return ((eq && formatDate(d) === eq) || (lt && d < lt) || (gt && d > gt)) || !date
       })
     return formatted
   },
