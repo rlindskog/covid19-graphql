@@ -29,14 +29,21 @@ const resolvers: QueryResolvers = {
   async result(_parent, { country, date }) {
     const res = await fetch('https://pomber.github.io/covid19/timeseries.json')
     let results = await res.json()
-    const formattedDate = formatDate(new Date(date))
     const countryResult = results[country]
-    const found = countryResult.find(r => {
-      const d = formatDate(new Date(r.date))
-      return d === formattedDate
-    })
+    if (date) {
+      const formattedDate = formatDate(new Date(date))
+      const found = countryResult.find(r => {
+        const d = formatDate(new Date(r.date))
+        return d === formattedDate
+      })
+      found.country = country
+      return found
+    }
+    // if no date provided, return the most recent.
+    const found = countryResult[countryResult.length - 1]
     found.country = country
     return found
+
   }
 }
 

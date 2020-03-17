@@ -10,11 +10,6 @@ export type Scalars = {
   Float: number;
 };
 
-export type CountryInput = {
-  in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  eq?: Maybe<Scalars['String']>;
-};
-
 export type DateInput = {
   eq?: Maybe<Scalars['String']>;
   gt?: Maybe<Scalars['String']>;
@@ -36,7 +31,7 @@ export type QueryResultsArgs = {
 
 export type QueryResultArgs = {
   country: Scalars['String'];
-  date: Scalars['String'];
+  date?: Maybe<Scalars['String']>;
 };
 
 export type Result = {
@@ -127,7 +122,6 @@ export type ResolversTypes = {
   Result: ResolverTypeWrapper<Result>,
   Int: ResolverTypeWrapper<Scalars['Int']>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
-  CountryInput: CountryInput,
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -138,12 +132,11 @@ export type ResolversParentTypes = {
   Result: Result,
   Int: Scalars['Int'],
   Boolean: Scalars['Boolean'],
-  CountryInput: CountryInput,
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Result']>>>, ParentType, ContextType, RequireFields<QueryResultsArgs, never>>,
-  result?: Resolver<Maybe<ResolversTypes['Result']>, ParentType, ContextType, RequireFields<QueryResultArgs, 'country' | 'date'>>,
+  result?: Resolver<Maybe<ResolversTypes['Result']>, ParentType, ContextType, RequireFields<QueryResultArgs, 'country'>>,
 };
 
 export type ResultResolvers<ContextType = any, ParentType extends ResolversParentTypes['Result'] = ResolversParentTypes['Result']> = {
