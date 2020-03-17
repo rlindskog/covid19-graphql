@@ -2,8 +2,14 @@ import { gql } from 'apollo-server-micro'
 
 const schema = gql`
 
+type Country {
+  name: String
+  results: [Result]
+  mostRecent: Result
+}
+
 type Result {
-  country: String
+  country: Country
   date: String
   confirmed: Int
   deaths: Int
@@ -20,6 +26,9 @@ input DateInput {
 type Query {
   results(countries: [String], date: DateInput): [Result]
   result (country: String!, date: String): Result
+
+  countries (names: [String]): [Country]
+  country (name: String): Country
 }
 `
 

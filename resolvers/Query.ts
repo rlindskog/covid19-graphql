@@ -17,7 +17,7 @@ const resolvers: QueryResolvers = {
         if (!countryResults) {
           throw new ApolloError(`Couldn't find data from country ${countryName}`)
         }
-        const withCountryName = countryResults.map(result => ({ ...result, country: countryName }))
+        const withCountryName = countryResults.map(result => ({ ...result, country: { name: countryName } }))
         return [...acc, ...withCountryName]
       }, [])
       .filter(result => {
@@ -41,10 +41,39 @@ const resolvers: QueryResolvers = {
     }
     // if no date provided, return the most recent.
     const found = countryResult[countryResult.length - 1]
-    found.country = country
+    found.country = { name: country }
     return found
+  },
 
+  async countries(_parent, { names }) {
+    const res = await fetch('https://pomber.github.io/covid19/timeseries.json')
+    let results = await res.json()
+    let formatted = (names && names.length > 0 ? names : Object.keys(results))
+      .reduce((acc, countryName) => {
+        const countryResults = results[countryName] as any[]
+        console.log('countryResults', countryResults);
+        if (!countryResults) {
+          throw new ApolloError(`Couldn't find data from country ${countryName}`)
+        }
+        const country = { name: countryName, results: countryResults, mostRecent: countryResults[countryResults.length - 1] }
+        // const withCountryName = countryResults.map(result => ({ ...result, country: { name: countryName } }))
+        // countryResults.results = countryResults.map(result => ({ ...result }))
+
+        return [...acc, country]
+      }, [])
+    return formatted
+  },
+  async country(_parent, { name }) {
+    const res = await fetch('https://pomber.github.io/covid19/timeseries.json')
+    let data = await res.json()
+    const results = data[name]
+    if (!results) {
+      throw new ApolloError(`Couldn't find data from country ${name}`)
+    }
+    const country = { name, results, mostRecent: results[results.length - 1] }
+    return country
   }
+
 }
 
 export default resolvers 
