@@ -14,6 +14,7 @@ type Result {
   confirmed: Int
   deaths: Int
   recovered: Int
+  growthRate: Float
 }
 
 """eq - equal to, gt - greater than, lt - less than"""
