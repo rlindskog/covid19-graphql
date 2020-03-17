@@ -1,7 +1,7 @@
 import { QueryResolvers } from './types'
 import { ApolloError } from 'apollo-server-micro'
 
-const formatDate = (d: Date) => `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
+const formatDate = (d: Date) => new Date(`${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`)
 
 const getGrowthRate = (index: number, results: any) => {
   if (index === 0) {
