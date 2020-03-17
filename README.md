@@ -34,3 +34,7 @@ query {
 Zeit verified open source: https://covid19-graphql.now.sh/_src
 
 MIT Licensed. PRs welcome! :)
+
+## Projects using this API
+
+[Add yours +](https://github.com/rlindskog/covid19-graphql/edit/master/readme.md)
