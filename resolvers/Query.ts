@@ -1,7 +1,7 @@
 import { QueryResolvers } from './types'
 import { ApolloError } from 'apollo-server-micro'
 
-const formatDate = (d: Date) => new Date(`${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`)
+const formatDate = (d: Date) => `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
 
 const getGrowthRate = (index: number, results: any) => {
   if (index === 0) {
@@ -21,6 +21,7 @@ const resolvers: QueryResolvers = {
     const eq = date && date.eq ? formatDate(new Date(date.eq)) : null
     const lt = date && date.lt ? formatDate(new Date(date.lt)) : null
     const gt = date && date.gt ? formatDate(new Date(date.gt)) : null
+    console.log("LESS THAN", lt)
     const countryNames = countries && countries.length > 0 ? countries : Object.keys(results)
     let formatted = countryNames
       .reduce((acc, countryName) => {
