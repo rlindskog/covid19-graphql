@@ -1,13 +1,11 @@
 import { QueryResolvers } from './types'
-import fetch from 'node-fetch'
 import { ApolloError } from 'apollo-server-micro'
 
 const formatDate = (d: Date) => `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
 
 const resolvers: QueryResolvers = {
-  async results(_parent, { countries, date }) {
-    const res = await fetch('https://pomber.github.io/covid19/timeseries.json')
-    let results = await res.json()
+  async results(_parent, { countries, date }, { getResults }) {
+    const results = await getResults()
     const eq = date && date.eq ? formatDate(new Date(date.eq)) : null
     const lt = date && date.lt ? formatDate(new Date(date.lt)) : null
     const gt = date && date.gt ? formatDate(new Date(date.gt)) : null
@@ -26,9 +24,8 @@ const resolvers: QueryResolvers = {
       })
     return formatted
   },
-  async result(_parent, { country, date }) {
-    const res = await fetch('https://pomber.github.io/covid19/timeseries.json')
-    let results = await res.json()
+  async result(_parent, { country, date }, { getResults }) {
+    const results = await getResults()
     const countryResult = results[country]
     if (date) {
       const formattedDate = formatDate(new Date(date))
@@ -45,9 +42,8 @@ const resolvers: QueryResolvers = {
     return found
   },
 
-  async countries(_parent, { names }) {
-    const res = await fetch('https://pomber.github.io/covid19/timeseries.json')
-    let results = await res.json()
+  async countries(_parent, { names }, { getResults }) {
+    const results = await getResults()
     let formatted = (names && names.length > 0 ? names : Object.keys(results))
       .reduce((acc, countryName) => {
         const countryResults = results[countryName] as any[]
@@ -56,16 +52,12 @@ const resolvers: QueryResolvers = {
           throw new ApolloError(`Couldn't find data from country ${countryName}`)
         }
         const country = { name: countryName, results: countryResults, mostRecent: countryResults[countryResults.length - 1] }
-        // const withCountryName = countryResults.map(result => ({ ...result, country: { name: countryName } }))
-        // countryResults.results = countryResults.map(result => ({ ...result }))
-
         return [...acc, country]
       }, [])
     return formatted
   },
-  async country(_parent, { name }) {
-    const res = await fetch('https://pomber.github.io/covid19/timeseries.json')
-    let data = await res.json()
+  async country(_parent, { name }, { getResults }) {
+    const data = await getResults()
     const results = data[name]
     if (!results) {
       throw new ApolloError(`Couldn't find data from country ${name}`)
