@@ -21,8 +21,6 @@ const resolvers: QueryResolvers = {
     const eq = date && date.eq ? formatDate(new Date(date.eq)) : null
     const lt = date && date.lt ? new Date(formatDate(new Date(date.lt))) : null
     const gt = date && date.gt ? new Date(formatDate(new Date(date.gt))) : null
-    console.log("LESS THAN", lt)
-    console.log("EQUAL TO", eq)
     const countryNames = countries && countries.length > 0 ? countries : Object.keys(results)
     let formatted = countryNames
       .reduce((acc, countryName) => {
