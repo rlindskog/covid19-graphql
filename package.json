@@ -7,8 +7,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^1.13.0",
     "@graphql-codegen/typescript": "1.13.0",
-    "@graphql-codegen/typescript-resolvers": "1.13.0",
-    "@types/papaparse": "^5.0.3"
+    "@graphql-codegen/typescript-resolvers": "1.13.0"
   },
   "scripts": {
     "generate": "graphql-codegen --config codegen.yml"
