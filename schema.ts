@@ -10,7 +10,9 @@ type Country {
 
 type Result {
   country: Country
-  date: String
+
+"""format date with date-fns. Help - https://date-fns.org/v2.11.0/docs/format"""
+  date (format: String): String
   confirmed: Int
   deaths: Int
   recovered: Int
