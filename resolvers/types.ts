@@ -60,6 +60,12 @@ export type Result = {
   confirmed?: Maybe<Scalars['Int']>;
   deaths?: Maybe<Scalars['Int']>;
   recovered?: Maybe<Scalars['Int']>;
+  growthRate?: Maybe<Scalars['Float']>;
+};
+
+
+export type ResultDateArgs = {
+  format?: Maybe<Scalars['String']>;
 };
 
 
@@ -141,6 +147,7 @@ export type ResolversTypes = {
   Result: ResolverTypeWrapper<Result>,
   Country: ResolverTypeWrapper<Country>,
   Int: ResolverTypeWrapper<Scalars['Int']>,
+  Float: ResolverTypeWrapper<Scalars['Float']>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
 };
 
@@ -152,6 +159,7 @@ export type ResolversParentTypes = {
   Result: Result,
   Country: Country,
   Int: Scalars['Int'],
+  Float: Scalars['Float'],
   Boolean: Scalars['Boolean'],
 };
 
@@ -171,10 +179,11 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type ResultResolvers<ContextType = any, ParentType extends ResolversParentTypes['Result'] = ResolversParentTypes['Result']> = {
   country?: Resolver<Maybe<ResolversTypes['Country']>, ParentType, ContextType>,
-  date?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  date?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ResultDateArgs, never>>,
   confirmed?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
   deaths?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
   recovered?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
+  growthRate?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>,
   __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
