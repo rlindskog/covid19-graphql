@@ -2,6 +2,8 @@ import { makeExecutableSchema, ApolloServer } from 'apollo-server-micro'
 import { default as typeDefs } from './schema'
 import resolvers from './resolvers'
 import fetch from 'node-fetch'
+import microCors = require('micro-cors');
+
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -26,7 +28,12 @@ const server = new ApolloServer({
     return {
       getResults
     }
-  }
+  },
+
 })
 
-export default server.createHandler({ path: '/' })
+const cors = microCors()
+
+const handler = server.createHandler({ path: '/' })
+
+export default cors((req, res) => req.method === 'OPTIONS' ? res.end() : handler(req, res))
