@@ -1,5 +1,4 @@
 {
-  "name": "covid19-graphql",
   "public": true,
   "rewrites": [
     {
