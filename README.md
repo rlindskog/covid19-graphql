@@ -27,7 +27,7 @@ query {
   country(name: "US") {
     name
     mostRecent {
-      date(format: "yyyy-mm-dd")
+      date(format: "yyyy-MM-dd")
       confirmed
     }
   }
