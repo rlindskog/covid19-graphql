@@ -39,7 +39,9 @@ Zeit verified open source: https://covid19-graphql.now.sh/_src
 
 ## Projects using this API
 
-[Add yours +](https://github.com/rlindskog/covid19-graphql/edit/master/readme.md)
+[Add yours +](https://github.com/rlindskog/covid19-graphql/edit/master/README.md)
+
+- [I am Covid -19 🦠](https://iamcovid-19.com/)([repo](https://github.com/cryptodoct0r/Covid-19-Status-gql)) - Visualization of the covid-19 dataset using Nuxtjs(vuejs), Graphql and valuable information about geeting through the Covid-19 pandemic.
 
 ## License
 MIT Licensed. PRs welcome! :)
