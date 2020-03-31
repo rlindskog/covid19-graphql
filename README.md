@@ -41,6 +41,7 @@ Zeit verified open source: https://covid19-graphql.now.sh/_src
 
 - [I am Covid -19 🦠](https://iamcovid-19.netlify.com/) ([repo](https://github.com/cryptodoct0r/Covid-19-Status-gql)) - Visualization of the covid-19 dataset using Nuxtjs(vuejs), Graphql and valuable information about geeting through the Covid-19 pandemic.
 - [covid19-bot](https://github.com/keyzt/covid-19-Bot) - Chat bot for showing information about the Covid-19 pandemic.
+
 [Add yours +](https://github.com/rlindskog/covid19-graphql/edit/master/README.md)
 
 ## License
