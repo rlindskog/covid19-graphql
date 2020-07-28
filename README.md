@@ -43,6 +43,7 @@ Zeit verified open source: https://covid19-graphql.now.sh/_src
 - [covid19-bot](https://vk.me/covid_stat) ([repo](https://github.com/keyzt/covid-19-Bot)) - Chat bot for showing information about the Covid-19 pandemic.
 - [Covid-19
 Pandemic Status](http://corona.rickkln.com/) ([repo](https://github.com/rickkln/corona)) - A simple tool to track global progress in defeating Covid-19, by focusing on the rate of change in death count globally and classifying countries by associated status.
+- [covid-19](https://unpolaco.github.io/covid-19/) ([repo](https://github.com/unpolaco/covid-19)) - Simple app made with React, Nivo charts and GSAP.
 
 [Add yours +](https://github.com/rlindskog/covid19-graphql/edit/master/README.md)
 
